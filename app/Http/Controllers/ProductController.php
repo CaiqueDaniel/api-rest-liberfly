@@ -29,4 +29,11 @@ class ProductController extends Controller
 
         return response()->json($response);
     }
+
+    public function view(int $id): Response
+    {
+        $product = $this->productService->findOne($id);
+
+        return response()->json($product);
+    }
 }

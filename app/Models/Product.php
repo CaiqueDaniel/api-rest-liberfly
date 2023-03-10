@@ -19,4 +19,9 @@ class Product extends Model
         return static::offset($page > 0 ? ($page * static::MAX_PER_PAGE) : static::MAX_PER_PAGE)
             ->simplePaginate(static::MAX_PER_PAGE);
     }
+
+    public static function findById(int $id): ?Product
+    {
+        return static::where('id', '=', $id)->first();
+    }
 }

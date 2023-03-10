@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\NotFoundException;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -26,5 +27,18 @@ class ProductService
         $page = $page <= 0 ? 1 : $page;
 
         return Product::findAll($page);
+    }
+
+    /**
+     * @throws NotFoundException
+     */
+    public function findOne(int $id): Product
+    {
+        $product = Product::findById($id);
+
+        if (empty($product))
+            throw new NotFoundException("Produto não encontrado");
+
+        return $product;
     }
 }
