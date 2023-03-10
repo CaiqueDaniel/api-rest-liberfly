@@ -42,8 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function findOneByEmail(string $email): ?User
+    public static function findOneById(int $id): ?User
     {
-        return static::where('email', 'like', $email)->first();
+        return static::where('id', '=', $id)->first();
     }
 }

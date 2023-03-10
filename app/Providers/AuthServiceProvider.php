@@ -41,7 +41,7 @@ class AuthServiceProvider extends ServiceProvider
             try {
                 $tokenPayload = JWT::decode($request->bearerToken(), new Key(config('jwt.key'), 'HS256'));
 
-                return User::find($tokenPayload)->first();
+                return User::findOneById($tokenPayload->id);
             } catch (Exception $e) {
                 Log::error($e);
 
