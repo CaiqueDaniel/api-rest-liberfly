@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Exceptions\UnauthorizedException;
 use App\Models\User;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use SebastianBergmann\ObjectReflector\Exception;
+use UnexpectedValueException;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -39,13 +41,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         Auth::viaRequest('jwt', function (Request $request) {
             try {
-                $tokenPayload = JWT::decode($request->bearerToken(), new Key(config('jwt.key'), 'HS256'));
+                $tokenPayload = JWT::decode($request->bearerToken() ?? '', new Key(config('jwt.key'), 'HS256'));
 
                 return User::findOneById($tokenPayload->id);
-            } catch (Exception $e) {
+            } catch (UnexpectedValueException $e) {
                 Log::error($e);
 
-                return null;
+                throw new UnauthorizedException("Não foi possivel validar o acesso");
             }
         });
     }
