@@ -40,6 +40,10 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => $e->getMessage()], Response::HTTP_NOT_FOUND);
         });
 
+        $this->renderable(function (UnauthorizedException $e) {
+            return response()->json(['error' => $e->getMessage()], Response::HTTP_UNAUTHORIZED);
+        });
+
         $this->reportable(function (Throwable $e) {
             //
         });
