@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Services\ProductService;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
@@ -20,5 +21,12 @@ class ProductController extends Controller
         $product = $this->productService->create($request);
 
         return response()->json($product);
+    }
+
+    public function list(Request $request): Response
+    {
+        $response = $this->productService->findAll($request);
+
+        return response()->json($response);
     }
 }
