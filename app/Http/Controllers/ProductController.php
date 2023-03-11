@@ -89,7 +89,7 @@ class ProductController extends Controller
      *
      *      @OA\Response(
      *          response=200,
-     *          description="Blocos lisitados com sucesso.",
+     *          description="Produtos lisitados com sucesso.",
      *
      *          @OA\JsonContent(
      *              @OA\Property(property="current_page", type="int", example="1"),
@@ -133,11 +133,17 @@ class ProductController extends Controller
 
     /**
      * @OA\Get (
-     *      path="/products/:id",
+     *      path="/products/{id}",
      *      tags={"Produto"},
      *      summary="Recuperar produto",
      *      description="Recuperar produto por ID",
      *      security={{"bearer_token":{}}},
+     *
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true
+     *      ),
      *
      *      @OA\Response(
      *          response=200,

@@ -112,7 +112,7 @@
                 "operationId": "efaa0ac2752be12de9af60343cf051a9",
                 "responses": {
                     "200": {
-                        "description": "Blocos lisitados com sucesso.",
+                        "description": "Produtos lisitados com sucesso.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -345,14 +345,22 @@
                 ]
             }
         },
-        "/products/:id": {
+        "/products/{id}": {
             "get": {
                 "tags": [
                     "Produto"
                 ],
                 "summary": "Recuperar produto",
                 "description": "Recuperar produto por ID",
-                "operationId": "9ad3396919ea4aadf00c9969752ccac4",
+                "operationId": "e780e4f7b4bdae73b26121abf47dfb20",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Buscar por estado",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Produto recuperado com sucesso",
