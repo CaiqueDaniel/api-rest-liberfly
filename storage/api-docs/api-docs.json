@@ -1,0 +1,454 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Liberfly",
+        "description": "",
+        "contact": {
+            "email": "caiquedaniel8@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api",
+            "description": "Endpoint da API."
+        }
+    ],
+    "paths": {
+        "/auth": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Autenticar e gerar token",
+                "description": "Retorna token de autenticação",
+                "operationId": "0fa80934886d2117ad53d0a4761476a2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "teste@teste.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "12345#qwert"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Token gerado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "{{token}}"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ao falhar em uma validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "email": {
+                                                "type": "array",
+                                                "items": {}
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não foi possivel validar o acesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "E-mail e/ou senha inválidos"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/products": {
+            "get": {
+                "tags": [
+                    "Produto"
+                ],
+                "summary": "Listar produtos",
+                "description": "Lista todos os produtos",
+                "operationId": "efaa0ac2752be12de9af60343cf051a9",
+                "responses": {
+                    "200": {
+                        "description": "Blocos lisitados com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "current_page": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "first_page_url": {
+                                            "type": "string",
+                                            "example": "http://localhost:8000/api/products?page=1"
+                                        },
+                                        "from": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "next_page_url": {
+                                            "type": "string|null",
+                                            "example": "http://localhost:8000/api/products?page=2"
+                                        },
+                                        "prev_page_url": {
+                                            "type": "string|null",
+                                            "example": "null"
+                                        },
+                                        "path": {
+                                            "type": "string",
+                                            "example": "http://localhost:8000/api/products"
+                                        },
+                                        "per_page": {
+                                            "type": "integer",
+                                            "example": "30"
+                                        },
+                                        "to": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "sku": {
+                                                        "type": "string",
+                                                        "example": "QWERTY"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Nome do produto"
+                                                    },
+                                                    "description": {
+                                                        "type": "string|null",
+                                                        "example": "Descrição do produto"
+                                                    },
+                                                    "price": {
+                                                        "type": "string",
+                                                        "example": "120.90"
+                                                    },
+                                                    "stock": {
+                                                        "type": "integer",
+                                                        "example": "5"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2022-11-14T00:06:03.000000Z"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2022-11-14T00:06:03.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não foi possivel validar o acesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Não foi possivel validar o acesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Produto"
+                ],
+                "summary": "Cadastrar produto",
+                "description": "Cadastra um novo produto",
+                "operationId": "fc6b0c9d45a547228d52dd3ee292ddc4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "sku": {
+                                        "type": "string",
+                                        "example": "QWERTY"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Nome do produto"
+                                    },
+                                    "description": {
+                                        "type": "string|null",
+                                        "example": "Descrição do produto"
+                                    },
+                                    "price": {
+                                        "type": "string",
+                                        "example": "120.90"
+                                    },
+                                    "stock": {
+                                        "type": "integer",
+                                        "example": "5"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Produto criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "sku": {
+                                            "type": "string",
+                                            "example": "QWERTY"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Nome do produto"
+                                        },
+                                        "description": {
+                                            "type": "string|null",
+                                            "example": "Descrição do produto"
+                                        },
+                                        "price": {
+                                            "type": "string",
+                                            "example": "120.90"
+                                        },
+                                        "stock": {
+                                            "type": "integer",
+                                            "example": "5"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2022-11-14T00:06:03.000000Z"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2022-11-14T00:06:03.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ao falhar em uma validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "sku": {
+                                                "type": "array",
+                                                "items": {}
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não foi possivel validar o acesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Não foi possivel validar o acesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/products/:id": {
+            "get": {
+                "tags": [
+                    "Produto"
+                ],
+                "summary": "Recuperar produto",
+                "description": "Recuperar produto por ID",
+                "operationId": "9ad3396919ea4aadf00c9969752ccac4",
+                "responses": {
+                    "200": {
+                        "description": "Produto recuperado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "sku": {
+                                            "type": "string",
+                                            "example": "QWERTY"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Nome do produto"
+                                        },
+                                        "description": {
+                                            "type": "string|null",
+                                            "example": "Descrição do produto"
+                                        },
+                                        "price": {
+                                            "type": "string",
+                                            "example": "120.90"
+                                        },
+                                        "stock": {
+                                            "type": "integer",
+                                            "example": "5"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2022-11-14T00:06:03.000000Z"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2022-11-14T00:06:03.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não foi possivel validar o acesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Não foi possivel validar o acesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Produto não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Produto não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearer_token": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
