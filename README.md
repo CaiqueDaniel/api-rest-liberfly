@@ -49,6 +49,10 @@ Essa API tem como objetivo criar e listar produtos após a autenticação do usu
 
 8. Atribua uma nova chave de geração do JWT (opcional para desenvolvimento)
     ```dotenv
+    #JWT_KEY=
+    ```
+
+    ```dotenv
     JWT_KEY={{meu_segredo}}
     ```
     Importante: A aplicação possui um valor padrão para essa variável, no entanto o seu uso **NÃO É RECOMENDADO PARA PRODUÇÃO.**
