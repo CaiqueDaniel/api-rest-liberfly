@@ -18,7 +18,7 @@ class ProductRequest extends APIRequest
             'name' => 'required|max:255',
             'description' => 'nullable|max:20000',
             'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'stock' => 'required|numeric|gt:0'
+            'stock' => 'required|numeric|gt:-1'
         ];
     }
 
