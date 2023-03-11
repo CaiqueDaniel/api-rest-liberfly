@@ -180,7 +180,7 @@ class ProductController extends Controller
      *      )
      * )
      */
-    public function view(int $id): Response
+    public function view(string $id): Response
     {
         $product = $this->productService->findOne($id);
 

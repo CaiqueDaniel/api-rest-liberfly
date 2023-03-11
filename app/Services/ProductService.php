@@ -32,8 +32,9 @@ class ProductService
     /**
      * @throws NotFoundException
      */
-    public function findOne(int $id): Product
+    public function findOne(string $id): Product
     {
+        $id = (int)$id;
         $product = Product::findById($id);
 
         if (empty($product))
