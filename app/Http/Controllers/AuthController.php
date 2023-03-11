@@ -10,6 +10,7 @@ class AuthController extends Controller
 {
     private AuthService $authService;
 
+    //Services serão injetados no controller via reflection
     public function __construct(AuthService $authService)
     {
         $this->authService = $authService;

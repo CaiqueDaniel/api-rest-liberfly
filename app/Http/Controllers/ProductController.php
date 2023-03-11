@@ -11,6 +11,7 @@ class ProductController extends Controller
 {
     private ProductService $productService;
 
+    //Services serão injetados no controller via reflection
     public function __construct(ProductService $productService)
     {
         $this->productService = $productService;
