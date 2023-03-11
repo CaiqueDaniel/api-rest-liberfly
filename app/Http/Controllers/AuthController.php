@@ -19,7 +19,7 @@ class AuthController extends Controller
      * @OA\Post(
      *      path="/auth",
      *      summary="Autenticar e gerar token",
-     *      tags={"Auth"},
+     *      tags={"Autenticação"},
      *      description="Retorna token de autenticação",
      *      @OA\RequestBody(
      *          required=true,
@@ -30,7 +30,7 @@ class AuthController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Token gerado com sucesso.",
+     *          description="Token gerado com sucesso",
      *          @OA\JsonContent(
      *              @OA\Property(property="token", type="string", example="{{token}}"),
      *              @OA\Property(property="type", type="string", example="Bearer")

@@ -2,13 +2,9 @@
     "openapi": "3.0.0",
     "info": {
         "title": "API Liberfly",
-        "description": "",
+        "description": "API de criação e consulta de produtos",
         "contact": {
             "email": "caiquedaniel8@gmail.com"
-        },
-        "license": {
-            "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         },
         "version": "1.0.0"
     },
@@ -22,7 +18,7 @@
         "/auth": {
             "post": {
                 "tags": [
-                    "Auth"
+                    "Autenticação"
                 ],
                 "summary": "Autenticar e gerar token",
                 "description": "Retorna token de autenticação",
@@ -49,7 +45,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Token gerado com sucesso.",
+                        "description": "Token gerado com sucesso",
                         "content": {
                             "application/json": {
                                 "schema": {
