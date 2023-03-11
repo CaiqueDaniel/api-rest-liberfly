@@ -59,6 +59,8 @@ Essa API tem como objetivo criar e listar produtos após a autenticação do usu
     ```shell
     php artisan migrate --seed
     ```
+   Importante: A Seeder configurada é um usuário para testes. **Não executar a seeder em produção**.
+
 
 10. Inicie o servidor de desenvolvimento
     ```shell
@@ -67,3 +69,11 @@ Essa API tem como objetivo criar e listar produtos após a autenticação do usu
 
 O servidor estará disponível em http://localhost:8000.  
 A documentação do Swagger estará disponível em http://localhost:8000/api/documentation.
+
+Dados de acesso do usuário de testes:
+```json
+{
+    "email": "admin@gmail.com",
+    "password": "123456"
+}
+```
